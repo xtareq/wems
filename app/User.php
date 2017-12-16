@@ -34,9 +34,11 @@ class User extends Authenticatable
         return ($this->role == 'admin');
     }
 
-    protected  function isEmp()
+
+
+    protected function isTeacher()
     {
-        return ($this->role == 'emp');
+        return ($this->role == 'teacher');
     }
 
 

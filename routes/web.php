@@ -48,7 +48,7 @@ Route::group(['prefix='=>'admin','middleware'=>['auth','admin']],function (){
 |                             Employee Routes                               |
 |--------------------------------------------------------------------------|
  */
-Route::group(['prefix'=>'emp','middleware'=>['auth','emp']],function(){
+Route::group(['prefix'=>'emp','middleware'=>['auth','teacher']],function(){
 
 });
 

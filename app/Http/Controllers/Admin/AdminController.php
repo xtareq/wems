@@ -51,55 +51,7 @@ class AdminController extends Controller
     }
 
 
-    //create employees
 
-    public function create()
-    {
-
-    }
-
-    public function leaves()
-    {
-        $data['leaves']= Leave::orderByRaw("FIELD(status , 'pending', 'accept', 'reject') ASC")->latest()->paginate(10);
-        return view('admin.leaves.index',$data);
-    }
-
-    public function showLeave($id)
-    {
-        $data['leave']=Leave::find($id);
-        return view('admin.leaves.show',$data);
-    }
-
-    public function acceptLeave($id)
-    {
-        $data['status']='accept';
-        Leave::where('id',$id)->update($data);
-        return redirect()->back();
-    }
-
-    public function rejectLeave($id)
-    {
-        $data['status']='reject';
-        Leave::where('id',$id)->update($data);
-        return redirect()->back();
-    }
-
-    public function showLeaveSummaryForm()
-    {
-        $data['leaves']=null;
-        return view('admin.leaves.leave_summary',$data);
-    }
-
-
-    public function showLeaveSummary(Request $request)
-    {
-        $start_date=Carbon::parse($request->start_date);
-        $end_date=Carbon::parse($request->end_date);
-
-        $data['leaves'] = Leave::whereBetween('created_at',[$start_date,$end_date])->paginate(10);
-        //dd($data['leaves']);
-        return view('admin.leaves.leave_summary',$data);
-    }
 
 
 }
